@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 import javax.swing.JLabel;
 
+import CONTROLLER.Controller;
 import VIEW.FinestraConnessione;
 import VIEW.FinestraGioco;
 
@@ -28,14 +29,14 @@ public class MyThread extends Thread {
 	Scanner in;
 	PrintWriter out;
 	Gestione g;
-	int ilTurno;
+	Controller c;
 
 
 	
-	public MyThread(Socket s,Gestione g,FinestraGioco f2) {
+	public MyThread(Socket s,Gestione g,FinestraGioco f2,Controller c) {
 		this.g=g;
 		this.s=s;
-		
+		this.c=c;
 		this.f2=f2;
 		
 		System.out.println("ciaooo");
@@ -46,16 +47,23 @@ public class MyThread extends Thread {
 			
 			e.printStackTrace();
 		}
-		HIT();
-		HIT();
-		String cc="ciao";
+		//mando le carte del client
+		out.println(c.getPath1());
+		out.println(c.getPath2());
+		
+		//mando le carte del server
+		out.println(c.getPath3());
+		out.println(c.getPath4());
+		/*String cc="ciao";
 		try {
 			cc=Ascolto();
+			if(cc.equals("punta"))
+				cc=Ascolto();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.f2.getLblGPuntata().setText("Puntata: "+cc);
+		this.f2.getLblGPuntata().setText("Puntata: "+cc);*/
 	}
 
 
@@ -74,6 +82,10 @@ public class MyThread extends Thread {
 			String ca="ciao";
 			try {
 				ca=Ascolto();
+				if(ca.equals("punta")){
+					ca=Ascolto();
+					this.f2.getLblGPuntata().setText("Puntata: "+ca);
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

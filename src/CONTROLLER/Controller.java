@@ -33,6 +33,7 @@ public class Controller implements ActionListener{
 	private static ServerSocket ss;
 	Socket s;
 	boolean Inizio=true;	
+	String path1,path2,path3,path4;
 
 	int Dmoney=9999,Dpuntata=100;
 	MyThread giocator1;
@@ -59,9 +60,9 @@ public class Controller implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		giocator1=new MyThread(s,g,f2);
+		giocator1=new MyThread(s,g,f2,this);
 		
-		giocator1.start();
+		
 		
 	}
 	
@@ -73,32 +74,38 @@ public class Controller implements ActionListener{
 	public void Carde(){
 		
 		System.out.println("ciaooo");
-		try{
-			
 		
-		
-		for(int a=0;a<2;a++){
+		String path1=String.valueOf(g.Distribuzione());
+		f2.getpManoG1().add(new JLabel(CaricaImmagine(path1+".png")));
+		f2.getSG1().setViewportView(f2.getpManoG1());
+		String path2=String.valueOf(g.Distribuzione());
+		f2.getpManoG1().add(new JLabel(CaricaImmagine(path2+".png")));
+		f2.getSG1().setViewportView(f2.getpManoG1());
+		/*for(int a=0;a<2;a++){
 			String path=String.valueOf(g.Distribuzione());
 			f2.getpManoG1().add(new JLabel(CaricaImmagine(path+".png")));
 			f2.getSG1().setViewportView(f2.getpManoG1());
-		}
+		}*/
 		
-		System.out.println("ciaooo");
+		String path3=String.valueOf(g.Distribuzione());
+		f2.getpManoDealer().add(new JLabel(CaricaImmagine(path3+".png")));
+		f2.getSDealer().setViewportView(f2.getpManoDealer());
+		f4.getpCarte().add(new JLabel(CaricaImmagine(path3+".png",50,70)));
+		f4.getsCarte().setViewportView(f4.getpCarte());
 		
-		
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("ciaooo");
-			e.printStackTrace();
-		}
-		
-		for(int a=0;a<2;a++){
+		String path4=String.valueOf(g.Distribuzione());
+		f2.getpManoDealer().add(new JLabel(CaricaImmagine(path4+".png")));
+		f2.getSDealer().setViewportView(f2.getpManoDealer());
+		f4.getpCarte().add(new JLabel(CaricaImmagine(path4+".png",50,70)));
+		f4.getsCarte().setViewportView(f4.getpCarte());
+		/*for(int a=0;a<2;a++){
 			String path=String.valueOf(g.Distribuzione());
 			f2.getpManoDealer().add(new JLabel(CaricaImmagine(path+".png")));
 			f2.getSDealer().setViewportView(f2.getpManoDealer());
 			f4.getpCarte().add(new JLabel(CaricaImmagine(path+".png",50,70)));
 			f4.getsCarte().setViewportView(f4.getpCarte());
-		}
+		}*/
+		giocator1.start();
 	}
 	
 	public ImageIcon CaricaImmagine(String path,int larg,int alt){
@@ -202,6 +209,38 @@ public class Controller implements ActionListener{
 			
 		}
 		return valore;
+	}
+
+	public String getPath1() {
+		return path1;
+	}
+
+	public void setPath1(String path1) {
+		this.path1 = path1;
+	}
+
+	public String getPath2() {
+		return path2;
+	}
+
+	public void setPath2(String path2) {
+		this.path2 = path2;
+	}
+
+	public String getPath3() {
+		return path3;
+	}
+
+	public void setPath3(String path3) {
+		this.path3 = path3;
+	}
+
+	public String getPath4() {
+		return path4;
+	}
+
+	public void setPath4(String path4) {
+		this.path4 = path4;
 	}
 	
 	
