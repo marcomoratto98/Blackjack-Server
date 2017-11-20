@@ -79,7 +79,7 @@ public class MyThread extends Thread {
 				e.printStackTrace();
 			}
 			
-			if(ca!="stand" || ca!="dd"){
+			if(ca!="stand"){
 				String cc="ciao";
 				try {
 					cc=Ascolto();
@@ -91,9 +91,9 @@ public class MyThread extends Thread {
 				if (cc.equals("hit")) {
 					HIT();
 				}
-				if (cc.equals("stand")) {
+				/*if (cc.equals("stand")) {
 					out.println("0");
-				}
+				}*/
 				if (cc.equals("dd")) {
 					HIT();
 				}	
