@@ -23,6 +23,7 @@ import javax.swing.text.Element;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import java.awt.Font;
 
 public class FinestraGioco extends JFrame {
 
@@ -32,6 +33,7 @@ public class FinestraGioco extends JFrame {
 	private JLabel label;
 	private JScrollPane SDealer,SG1;
 	private JPanel pManoDealer,pManoG1;
+	private JLabel lblGPuntata;
 	
 
 	/**
@@ -70,7 +72,7 @@ public class FinestraGioco extends JFrame {
 		
 		SDealer = new JScrollPane();
 		SDealer.setOpaque(false);
-		SDealer.setBounds(314, 22, 296, 96);
+		SDealer.setBounds(313, 357, 296, 96);
 		
 		panel.add(SDealer);
 		
@@ -81,13 +83,19 @@ public class FinestraGioco extends JFrame {
 		
 		SG1 = new JScrollPane();
 		SG1.setOpaque(false);
-		SG1.setBounds(314, 287, 296, 96);
+		SG1.setBounds(313, 26, 296, 96);
 		
 		panel.add(SG1);
 		
 		pManoG1 = new JPanel();
 		pManoG1.setOpaque(false);
 		SG1.setViewportView(pManoG1);
+		
+		lblGPuntata = new JLabel("Puntata: ");
+		lblGPuntata.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblGPuntata.setForeground(new Color(255, 0, 0));
+		lblGPuntata.setBounds(620, 38, 102, 26);
+		panel.add(lblGPuntata);
 		
 		
 		

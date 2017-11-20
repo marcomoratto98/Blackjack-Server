@@ -28,10 +28,11 @@ public class Controller implements ActionListener{
 	FinestraRegole f3;
 	FinestraMosse f4;
 	Gestione g;
-	
+	int Dmano=0,Gmano=0;
 	private static ServerSocket ss;
 	boolean Inizio=true;	
 	int ilTurno=0;
+	int Dmoney=9999,Dpuntata=100;
 	MyThread giocator1;
 	
 	public Controller(FinestraConnessione f1, FinestraGioco f2, FinestraRegole f3, FinestraMosse f4, Gestione g) {
@@ -55,10 +56,7 @@ public class Controller implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i=0; i<4;i++){
-			giocator1=new MyThread(ss,g,ilTurno,f2);
-			
-		}
+		giocator1=new MyThread(ss,g,ilTurno,f2);
 		
 		
 		
@@ -226,6 +224,14 @@ public class Controller implements ActionListener{
 		}
 	}
 	
+	
+	public int ASSO(int carta){
+		int valore=0;
+		if(carta==10 || carta==30 || carta==50 || carta==70){
+			
+		}
+		return valore;
+	}
 	
 	
 	

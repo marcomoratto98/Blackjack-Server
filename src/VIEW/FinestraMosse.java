@@ -19,6 +19,8 @@ public class FinestraMosse extends JFrame {
 	private JButton btnRegole;
 	private JScrollPane sCarte;
 	private JPanel pCarte;
+	private JButton btnPuntata;
+	private JLabel lblPuntata;
 
 	/**
 	 * Launch the application.
@@ -49,11 +51,11 @@ public class FinestraMosse extends JFrame {
 		contentPane.setLayout(null);
 		
 		btnHit = new JButton("HIT");
-		btnHit.setBounds(10, 44, 95, 66);
+		btnHit.setBounds(10, 24, 95, 66);
 		contentPane.add(btnHit);
 		
 		btnStand = new JButton("STAND");
-		btnStand.setBounds(115, 44, 100, 66);
+		btnStand.setBounds(115, 24, 100, 66);
 		contentPane.add(btnStand);
 		
 		btnRegole = new JButton("");
@@ -67,10 +69,47 @@ public class FinestraMosse extends JFrame {
 		
 		pCarte = new JPanel();
 		sCarte.setViewportView(pCarte);
+		
+		btnPuntata = new JButton("Puntata");
+		btnPuntata.setBounds(10, 125, 89, 23);
+		contentPane.add(btnPuntata);
+		
+		lblPuntata = new JLabel("");
+		lblPuntata.setBounds(115, 125, 100, 23);
+		contentPane.add(lblPuntata);
 	}
 
 	
 	
+	
+	public JButton getBtnPuntata() {
+		return btnPuntata;
+	}
+
+
+
+
+	public void setBtnPuntata(JButton btnPuntata) {
+		this.btnPuntata = btnPuntata;
+	}
+
+
+
+
+	public JLabel getLblPuntata() {
+		return lblPuntata;
+	}
+
+
+
+
+	public void setLblPuntata(JLabel lblPuntata) {
+		this.lblPuntata = lblPuntata;
+	}
+
+
+
+
 	public JButton getBtnRegole() {
 		return btnRegole;
 	}
@@ -121,5 +160,4 @@ public class FinestraMosse extends JFrame {
 	public void setBtnStand(JButton btnStand) {
 		this.btnStand = btnStand;
 	}
-
 }
