@@ -61,6 +61,8 @@ public class MyThread extends Thread {
 			e.printStackTrace();
 		}
 		if(ilTurno==0){
+			HIT();
+			HIT();
 			out.println("turno1");
 		}
 	}
@@ -98,14 +100,14 @@ public class MyThread extends Thread {
 			//String risposta = in.nextLine();
 			System.out.println("Il server ha ricevuto: ---" + s + "--- ");
 			if (s.equals("hit")) {
-				out.println(g.Distribuzione());
+				HIT();
 				
 			}
 			if (s.equals("stand")) {
 				out.println("0");
 			}
 			if (s.equals("dd")) {
-				out.println(g.Distribuzione());
+				HIT();
 			}
 			
 		}
@@ -115,10 +117,9 @@ public class MyThread extends Thread {
 	}
 	
 	
-	
-	
-	
-	
+	public void HIT(){
+		out.println(g.Distribuzione());
+	}
 	
 	public InetAddress getIpAddress(){
 		return p.getInetAddress();

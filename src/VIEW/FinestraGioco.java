@@ -70,7 +70,7 @@ public class FinestraGioco extends JFrame {
 		
 		SDealer = new JScrollPane();
 		SDealer.setOpaque(false);
-		SDealer.setBounds(314, 41, 296, 77);
+		SDealer.setBounds(314, 22, 296, 96);
 		
 		panel.add(SDealer);
 		

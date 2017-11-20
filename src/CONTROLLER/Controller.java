@@ -150,7 +150,7 @@ public class Controller implements ActionListener{
 		int width = temp.getIconWidth();
 		int height = temp.getIconHeight();
 		if (width > 50 || height > 70) {
-			double d = 55D / Math.max(width, height);
+			double d = 75D / Math.max(width, height);
 			width = (int)Math.round(width * d);
 			height = (int)Math.round(height * d);
 			Image img1 = temp.getImage();
