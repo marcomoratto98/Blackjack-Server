@@ -33,7 +33,7 @@ public class Controller implements ActionListener{
 	private static ServerSocket ss;
 	Socket s;
 	boolean Inizio=true;	
-	int ilTurno=0;
+
 	int Dmoney=9999,Dpuntata=100;
 	MyThread giocator1;
 	
@@ -59,7 +59,7 @@ public class Controller implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		giocator1=new MyThread(s,g,ilTurno,f2);
+		giocator1=new MyThread(s,g,f2);
 		
 		giocator1.start();
 		
@@ -99,35 +99,6 @@ public class Controller implements ActionListener{
 			f4.getpCarte().add(new JLabel(CaricaImmagine(path+".png",50,70)));
 			f4.getsCarte().setViewportView(f4.getpCarte());
 		}
-		
-		// Dopo 5 secondi invio una parola diversa
-		/*while (Inizio==true) {
-		// Passo int ai client
-			int g1,g2,g3,g4,d;
-			System.out.println("ciaooo");
-			System.out.println("Inizio parte gestione carte");
-			/*
-			parola = "albero";
-			vincitore = null;
-			out1.println(parola);
-			out2.println(parola);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			parola = "manoscritto";
-			vincitore = null;
-			out1.println(parola);
-			out2.println(parola);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
 	}
 	
 	public ImageIcon CaricaImmagine(String path,int larg,int alt){
@@ -176,24 +147,17 @@ public class Controller implements ActionListener{
 		
 		//Pulsante Hit
 		if(evt.getSource()==f4.getBtnHit()){
-			if(ilTurno==1){
+			
 				String path=String.valueOf(g.Distribuzione());
 				f2.getpManoDealer().add(new JLabel(CaricaImmagine(path+".png")));
 				f2.getSDealer().setViewportView(f2.getpManoDealer());
 				f4.getpCarte().add(new JLabel(CaricaImmagine(path+".png",50,70)));
 				f4.getsCarte().setViewportView(f4.getpCarte());
-				
-				ilTurno=0;
-				
-				/*f2.getD3().setIcon(CaricaImmagine(path+".png"));
-				f2.getD3().setVisible(true);
-				f4.getCarta3().setIcon(CaricaImmagine(path+".png",50,70));
-			*/}
+
 		}
 		
 		//Pulsante Stand
 		if(evt.getSource()==f4.getBtnStand()){
-			ilTurno=0;
 			System.out.println("FINE TURNO");
 		}
 		

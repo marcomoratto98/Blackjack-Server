@@ -32,10 +32,10 @@ public class MyThread extends Thread {
 
 
 	
-	public MyThread(Socket s,Gestione g,int ilTurno,FinestraGioco f2) {
+	public MyThread(Socket s,Gestione g,FinestraGioco f2) {
 		this.g=g;
 		this.s=s;
-		this.ilTurno=ilTurno;
+		
 		this.f2=f2;
 		
 		System.out.println("ciaooo");
@@ -46,11 +46,16 @@ public class MyThread extends Thread {
 			
 			e.printStackTrace();
 		}
-		if(ilTurno==0){
-			HIT();
-			HIT();
-			out.println("turno1");
+		HIT();
+		HIT();
+		String cc="ciao";
+		try {
+			cc=Ascolto();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		this.f2.getLblGPuntata().setText("Puntata: "+cc);
 	}
 
 
@@ -65,37 +70,34 @@ public class MyThread extends Thread {
 		super.run();
 		// legge quello che arriva
 		while (true) {
-			/*InputStreamReader isr = null;
+			
+			String ca="ciao";
 			try {
-				isr = new InputStreamReader(s.getInputStream());
+				ca=Ascolto();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			BufferedReader in = new BufferedReader(isr);
-			String s = null;
-			try {
-				s = in.readLine();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
-			String cc="ciao";
-			try {
-				cc=Ascolto();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
+			if(ca!="stand" || ca!="dd"){
+				String cc="ciao";
+				try {
+					cc=Ascolto();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("Il server ha ricevuto: ---" + cc + "--- ");
+				if (cc.equals("hit")) {
+					HIT();
+				}
+				if (cc.equals("stand")) {
+					out.println("0");
+				}
+				if (cc.equals("dd")) {
+					HIT();
+				}	
 			}
-			System.out.println("Il server ha ricevuto: ---" + cc + "--- ");
-			if (cc.equals("hit")) {
-				HIT();
-			}
-			if (cc.equals("stand")) {
-				out.println("0");
-			}
-			if (cc.equals("dd")) {
-				HIT();
-			}	
 		}
 	}
 	

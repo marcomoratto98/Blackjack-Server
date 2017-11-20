@@ -114,6 +114,18 @@ public class FinestraGioco extends JFrame {
 
 
 	
+	public JLabel getLblGPuntata() {
+		return lblGPuntata;
+	}
+
+
+
+	public void setLblGPuntata(JLabel lblGPuntata) {
+		this.lblGPuntata = lblGPuntata;
+	}
+
+
+
 	public JScrollPane getSDealer() {
 		return SDealer;
 	}
