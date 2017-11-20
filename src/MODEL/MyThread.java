@@ -27,8 +27,7 @@ public class MyThread extends Thread {
 	//private DatagramPacket pkt;
 	//private byte[] buf = new byte[256];
 	
-	ServerSocket p;
-	Socket s=new Socket();
+	Socket s;
 	Scanner in;
 	PrintWriter out;
 	Gestione g;
@@ -36,23 +35,13 @@ public class MyThread extends Thread {
 
 
 	
-	public MyThread(ServerSocket ss,Gestione g,int ilTurno,FinestraGioco f2) {
+	public MyThread(Socket s,Gestione g,int ilTurno,FinestraGioco f2) {
 		this.g=g;
-		p = ss;
+		this.s=s;
 		this.ilTurno=ilTurno;
 		this.f2=f2;
 		
 		System.out.println("ciaooo");
-		try {
-			
-			
-			p.accept();
-			
-			System.out.println("ciaoooqqqqqqqqqqqqqq");
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
 		try {
 			out = new PrintWriter(s.getOutputStream(), true);
 			in = new Scanner(s.getInputStream());
@@ -126,7 +115,7 @@ public class MyThread extends Thread {
 	}
 	
 	public InetAddress getIpAddress(){
-		return p.getInetAddress();
+		return s.getInetAddress();
 		
 	}
 

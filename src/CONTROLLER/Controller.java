@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -30,6 +31,7 @@ public class Controller implements ActionListener{
 	Gestione g;
 	int Dmano=0,Gmano=0;
 	private static ServerSocket ss;
+	Socket s;
 	boolean Inizio=true;	
 	int ilTurno=0;
 	int Dmoney=9999,Dpuntata=100;
@@ -52,11 +54,12 @@ public class Controller implements ActionListener{
 		
 		try {
 			ss=new ServerSocket(9999);
+			s=ss.accept();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		giocator1=new MyThread(ss,g,ilTurno,f2);
+		giocator1=new MyThread(s,g,ilTurno,f2);
 		
 		
 		
