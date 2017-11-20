@@ -24,9 +24,6 @@ public class MyThread extends Thread {
 	
 	private FinestraConnessione f;
 	private FinestraGioco f2;
-	//private DatagramPacket pkt;
-	//private byte[] buf = new byte[256];
-	
 	Socket s;
 	Scanner in;
 	PrintWriter out;

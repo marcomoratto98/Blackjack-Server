@@ -61,9 +61,13 @@ public class Controller implements ActionListener{
 		}
 		giocator1=new MyThread(s,g,ilTurno,f2);
 		
-		
+		giocator1.start();
 		
 	}
+	
+	/*public void HIT(){
+		out.println(g.Distribuzione());
+	}*/
 	
 	
 	public void Carde(){
