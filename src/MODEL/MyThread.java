@@ -79,9 +79,7 @@ public class MyThread extends Thread {
 		super.run();
 		// legge quello che arriva
 		while (true) {
-			
-			
-			InputStreamReader isr = null;
+			/*InputStreamReader isr = null;
 			try {
 				isr = new InputStreamReader(s.getInputStream());
 			} catch (IOException e) {
@@ -93,27 +91,33 @@ public class MyThread extends Thread {
 			try {
 				s = in.readLine();
 			} catch (IOException e) {
+				e.printStackTrace();
+			}*/
+			String cc="ciao";
+			try {
+				cc=Ascolto();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// Leggo una riga e la interpreto
-			//String risposta = in.nextLine();
-			System.out.println("Il server ha ricevuto: ---" + s + "--- ");
-			if (s.equals("hit")) {
+			System.out.println("Il server ha ricevuto: ---" + cc + "--- ");
+			if (cc.equals("hit")) {
 				HIT();
-				
 			}
-			if (s.equals("stand")) {
+			if (cc.equals("stand")) {
 				out.println("0");
 			}
-			if (s.equals("dd")) {
+			if (cc.equals("dd")) {
 				HIT();
-			}
-			
+			}	
 		}
-		
-		
-		
+	}
+	
+	public String Ascolto() throws IOException{
+		InputStreamReader isr = new InputStreamReader(s.getInputStream());
+		BufferedReader in = new BufferedReader(isr);
+		String sa = in.readLine();
+		return sa;
 	}
 	
 	
