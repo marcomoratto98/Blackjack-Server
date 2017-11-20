@@ -3,7 +3,9 @@ package MODEL;
 
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -13,11 +15,15 @@ import java.net.SocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.util.Scanner;
 
+import javax.swing.JLabel;
+
 import VIEW.FinestraConnessione;
+import VIEW.FinestraGioco;
 
 public class MyThread extends Thread {
 	
 	private FinestraConnessione f;
+	private FinestraGioco f2;
 	//private DatagramPacket pkt;
 	//private byte[] buf = new byte[256];
 	
@@ -26,12 +32,15 @@ public class MyThread extends Thread {
 	Scanner in;
 	PrintWriter out;
 	Gestione g;
+	int ilTurno;
 
-	int carta1=0,carta2=0,hit=0;
+
 	
-	public MyThread(ServerSocket ss,Gestione g) {
+	public MyThread(ServerSocket ss,Gestione g,int ilTurno,FinestraGioco f2) {
 		this.g=g;
 		p = ss;
+		this.ilTurno=ilTurno;
+		this.f2=f2;
 		
 		System.out.println("ciaooo");
 		try {
@@ -41,15 +50,18 @@ public class MyThread extends Thread {
 			
 			System.out.println("ciaoooqqqqqqqqqqqqqq");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		try {
 			out = new PrintWriter(s.getOutputStream(), true);
 			in = new Scanner(s.getInputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+		}
+		if(ilTurno==0){
+			out.println("turno1");
 		}
 	}
 
@@ -65,14 +77,37 @@ public class MyThread extends Thread {
 		super.run();
 		// legge quello che arriva
 		while (true) {
+			
+			
+			InputStreamReader isr = null;
+			try {
+				isr = new InputStreamReader(s.getInputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			BufferedReader in = new BufferedReader(isr);
+			String s = null;
+			try {
+				s = in.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// Leggo una riga e la interpreto
-			String risposta = in.nextLine();
-			System.out.println("Il server ha ricevuto: ---" + risposta + "--- ");
-			if (risposta.equals("hit")) {
+			//String risposta = in.nextLine();
+			System.out.println("Il server ha ricevuto: ---" + s + "--- ");
+			if (s.equals("hit")) {
+				out.println(g.Distribuzione());
+				
+			}
+			if (s.equals("stand")) {
+				out.println("0");
+			}
+			if (s.equals("dd")) {
 				out.println(g.Distribuzione());
 			}
-				// Invia hai vinto al vincitore
-				out.println("Hai vinto!");
+			
 		}
 		
 		
@@ -90,30 +125,7 @@ public class MyThread extends Thread {
 		
 	}
 
-	public int getCarta1() {
-		return carta1;
-	}
-
-	public void setCarta1(int carta1) {
-		this.carta1 = carta1;
-	}
-
-	public int getCarta2() {
-		return carta2;
-	}
-
-	public void setCarta2(int carta2) {
-		this.carta2 = carta2;
-	}
-
-	public int getHit() {
-		return hit;
-	}
-
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
-
+	
 	
 	
 }

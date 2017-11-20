@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 
 import MODEL.Gestione;
 import MODEL.MyThread;
-import MODEL.Server;
 import VIEW.FinestraConnessione;
 import VIEW.FinestraGioco;
 import VIEW.FinestraMosse;
@@ -29,19 +28,19 @@ public class Controller implements ActionListener{
 	FinestraRegole f3;
 	FinestraMosse f4;
 	Gestione g;
-	Server server;
+	
 	private static ServerSocket ss;
 	boolean Inizio=true;	
 	int ilTurno=0;
-	ArrayList<MyThread> giocatori=new ArrayList<MyThread>();
+	MyThread giocator1;
 	
-	public Controller(FinestraConnessione f1, FinestraGioco f2, FinestraRegole f3, FinestraMosse f4, Gestione g, Server server) {
+	public Controller(FinestraConnessione f1, FinestraGioco f2, FinestraRegole f3, FinestraMosse f4, Gestione g) {
 		this.f1 = f1;
 		this.f2 = f2;
 		this.f3 = f3;
 		this.f4 = f4;
 		this.g = g;
-		this.server=server;
+		
 		this.f1.setVisible(true);
 		this.f1.getBtnSalmone().addActionListener(this);
 		this.f4.getBtnRegole().addActionListener(this);
@@ -57,19 +56,8 @@ public class Controller implements ActionListener{
 			e.printStackTrace();
 		}
 		for(int i=0; i<4;i++){
-			giocatori.add(new MyThread(ss,g));
-			if(i==0){
-			f1.getLblGiocatore1().setText(" Giocatore 1: "+giocatori.get(0).getIpAddress());
-			}
-			if(i==1){
-			f1.getLblGiocatore2().setText(" Giocatore 2: "+giocatori.get(1).getIpAddress());
-			}
-			if(i==2){
-			f1.getLblGiocatore3().setText(" Giocatore 3: "+giocatori.get(2).getIpAddress());
-			}
-			if(i==3){
-			f1.getLblGiocatore4().setText(" Giocatore 4: "+giocatori.get(3).getIpAddress());
-			}
+			giocator1=new MyThread(ss,g,ilTurno,f2);
+			
 		}
 		
 		
@@ -82,66 +70,23 @@ public class Controller implements ActionListener{
 		System.out.println("ciaooo");
 		try{
 			
-		MyThread st1 = giocatori.get(0);
-		int carta=g.Distribuzione();
 		
 		
-		st1.setCarta1(carta);
-		carta=g.Distribuzione();
-		st1.setCarta2(carta);
+		for(int a=0;a<2;a++){
+			String path=String.valueOf(g.Distribuzione());
+			f2.getpManoG1().add(new JLabel(CaricaImmagine(path+".png")));
+			f2.getSG1().setViewportView(f2.getpManoG1());
+		}
 		
 		System.out.println("ciaooo");
-		st1.start();
+		
 		
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("ciaooo");
 			e.printStackTrace();
 		}
-		try{
-			
-			MyThread st2 = giocatori.get(1);
-			st2.start();
-			int carta=g.Distribuzione();
-			st2.setCarta1(carta);
-			carta=g.Distribuzione();
-			st2.setCarta2(carta);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		try{
-			
-			MyThread st3 = giocatori.get(2);
-			st3.start();
-			int carta=g.Distribuzione();
-			st3.setCarta1(carta);
-			carta=g.Distribuzione();
-			st3.setCarta2(carta);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		try{
-			
-			MyThread st4 = giocatori.get(3);
-			st4.start();
-			int carta=g.Distribuzione();
-			st4.setCarta1(carta);
-			carta=g.Distribuzione();
-			st4.setCarta2(carta);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
 		
-		//dealer
-		//String path=String.valueOf(g.Distribuzione());
-		//f2.getD1().setIcon(CaricaImmagine(path+".png"));
-		//f4.getCarta1().setIcon(CaricaImmagine(path+".png",50,70));
-		//path=String.valueOf(g.Distribuzione());
-		//f2.getD2().setIcon(CaricaImmagine(path+".png"));
-		//f4.getCarta2().setIcon(CaricaImmagine(path+".png",50,70));
 		for(int a=0;a<2;a++){
 			String path=String.valueOf(g.Distribuzione());
 			f2.getpManoDealer().add(new JLabel(CaricaImmagine(path+".png")));
